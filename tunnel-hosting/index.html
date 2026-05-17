@@ -1,0 +1,1859 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Self-hosted remote-management server. Fully open source.">
+      
+      
+      
+        <link rel="canonical" href="https://docs.proxiport.net/tunnel-hosting/">
+      
+      
+        <link rel="prev" href="../scripts/">
+      
+      
+        <link rel="next" href="../watchdog/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Tunnel hosting - ProxiPort</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tunnel-hosting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ProxiPort" class="md-header__button md-logo" aria-label="ProxiPort" data-md-component="logo">
+      
+  <img src="../assets/wordmark.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ProxiPort
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tunnel hosting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/proximile/proxiport" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    proximile/proxiport
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ProxiPort" class="md-nav__button md-logo" aria-label="ProxiPort" data-md-component="logo">
+      
+  <img src="../assets/wordmark.svg" alt="logo">
+
+    </a>
+    ProxiPort
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/proximile/proxiport" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    proximile/proxiport
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../origin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Origin and licensing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changes-from-openrport/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What changed from openrport
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrating from rport / openrport
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator-runbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Authentication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client-authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server hardening
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Server hardening
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../https/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ip-address-determination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IP-address determination
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with clients
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with clients
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../command-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command execution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnel hosting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnel hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tunnels-on-random-subdomains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tunnels on random subdomains
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tunnels on random subdomains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using it
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#novnc-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NoVNC proxy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NoVNC proxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rdp-proxy-via-guacd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDP proxy via guacd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-reception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File reception
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File reception">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-size-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File-size limit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restricted-destinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restricted destinations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privileged-writes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privileged writes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#live-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live progress
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../watchdog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Watchdog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vault/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vault
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client-groups-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client groups and permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client-attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client attributes file
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tunnels-on-random-subdomains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tunnels on random subdomains
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tunnels on random subdomains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using it
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#novnc-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NoVNC proxy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NoVNC proxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rdp-proxy-via-guacd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDP proxy via guacd
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-reception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File reception
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File reception">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-size-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File-size limit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restricted-destinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restricted destinations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privileged-writes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privileged writes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#live-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live progress
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tunnel-hosting">Tunnel hosting<a class="headerlink" href="#tunnel-hosting" title="Permanent link">&para;</a></h1>
+<p>A ProxiPort tunnel is a server-side listener that forwards traffic to
+a TCP port on an agent. Everything in this document is about how
+operators <strong>publish</strong> those listeners — on what port, on what
+hostname, with what protocol on top — so users can reach them in a
+browser or an SSH client.</p>
+<p>ProxiPort can present a tunnel as:</p>
+<ul>
+<li>a <strong>raw TCP port</strong> on the server itself (the default, fine for SSH,
+  databases, anything that already has its own client);</li>
+<li>a <strong>subdomain on a wildcard hostname</strong> routed by an embedded Caddy
+  instance (HTTPS-on-443 access to internal web UIs, RDP-via-browser,
+  VNC-via-browser);</li>
+<li>a <strong>NoVNC-wrapped VNC tunnel</strong> that renders a remote VNC server
+  inside an HTML5 browser tab;</li>
+<li>an <strong>RDP-via-browser tunnel</strong> that proxies through an Apache
+  Guacamole <code>guacd</code> daemon;</li>
+<li>a <strong>target for inbound file pushes</strong> that uses the same chisel
+  channel to drop files onto the agent host.</li>
+</ul>
+<p>This page covers all five. For tunnel ACLs, timeouts, and the basic
+SPA flow, see <a href="../operator-runbook/#tunnels">operator runbook — tunnels</a>.</p>
+<h2 id="tunnels-on-random-subdomains">Tunnels on random subdomains<a class="headerlink" href="#tunnels-on-random-subdomains" title="Permanent link">&para;</a></h2>
+<p>The default tunnel scheme allocates a random port from
+<code>[server] used_ports</code> (default <code>20000-30000</code>). That works fine until
+you have to dial through a firewall that blocks outbound traffic to
+non-default ports.</p>
+<p>The subdomain hosting feature lets you publish each HTTP-based tunnel
+on <code>https://&lt;random&gt;.tunnels.example.com:443</code> alongside the random
+port. Same tunnel, two access paths. The browser uses 443, which gets
+through most strict egress filters.</p>
+<h3 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h3>
+<p><code>proxiportd</code> launches and supervises a <a href="https://caddyserver.com/">Caddy</a>
+process. Caddy listens on the configured port (typically 443),
+terminates TLS, and routes the random subdomain to the right
+tunnel's internal port. All Caddy configuration is generated and
+pushed by <code>proxiportd</code> over a Unix socket — no manual <code>Caddyfile</code>.</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Caddy installed locally.</strong> Either via the package manager or as
+   a static binary in <code>/usr/local/bin/caddy</code>. A Caddy in a separate
+   container is not supported — <code>proxiportd</code> needs to spawn and
+   manage the process directly.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>curl<span class="w"> </span>-L<span class="w"> </span><span class="s2">&quot;https://caddyserver.com/api/download?os=linux&amp;arch=amd64&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>/usr/local/bin/caddy
+sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/caddy
+sudo<span class="w"> </span>setcap<span class="w"> </span><span class="s1">&#39;cap_net_bind_service=+ep&#39;</span><span class="w"> </span>/usr/local/bin/caddy
+</code></pre></div>
+<p><code>setcap</code> is what lets the unprivileged <code>proxiport</code> user start a
+   listener on 443. Without it, Caddy will fail to bind.</p>
+<p>If Caddy is installed via the package manager, the unit usually
+   auto-starts on boot. Disable it (<code>sudo systemctl disable caddy</code>)
+   so the package's Caddy does not fight <code>proxiportd</code>'s child Caddy.</p>
+<ol>
+<li>
+<p><strong>Wildcard DNS record.</strong> Create <code>*.tunnels.example.com</code> pointing
+   at the server's public IP. If you would rather not use a subdomain
+   prefix, a wildcard at the apex (<code>*.example.com</code>) works too.</p>
+</li>
+<li>
+<p><strong>Wildcard TLS certificate.</strong> A Let's Encrypt DNS-01 wildcard:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="w"> </span>--manual<span class="w"> </span>--preferred-challenges<span class="w"> </span>dns<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;*.tunnels.example.com&#39;</span>
+</code></pre></div>
+<p>Make the cert readable by the <code>proxiport</code> user:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>find<span class="w"> </span>/etc/letsencrypt/<span class="o">{</span>archive,live<span class="o">}</span><span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span>o+rx<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+sudo<span class="w"> </span>find<span class="w"> </span>/etc/letsencrypt/<span class="o">{</span>archive,live<span class="o">}</span><span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span>o+r<span class="w">  </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+</code></pre></div>
+<p>You can also let the <a href="../https/#built-in-acme">built-in ACME</a>
+   manage the wildcard:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[server]</span>
+<span class="w">  </span><span class="n">tunnel_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;tunnels.proxiport.example.com&quot;</span>
+<span class="w">  </span><span class="n">tunnel_enable_acme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+<h3 id="server-configuration">Server configuration<a class="headerlink" href="#server-configuration" title="Permanent link">&para;</a></h3>
+<p>Two deployment shapes, "split port" and "shared port".</p>
+<p><strong>Split port</strong> keeps the API/SPA on one TCP port (say 3000) and lets
+Caddy run on its own port (typically 443) just for tunnels.
+<a href="https://github.com/proximile/proxiport/blob/main/proxiportd.example.conf"><code>proxiportd.conf</code></a>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[caddy-integration]</span>
+<span class="w">  </span><span class="n">caddy</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/usr/local/bin/caddy&quot;</span>
+<span class="w">  </span><span class="n">address</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.0.0.0:443&quot;</span>
+<span class="w">  </span><span class="n">subdomain_prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;tunnels.proxiport.example.com&quot;</span>
+<span class="w">  </span><span class="n">cert_file</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/etc/letsencrypt/live/tunnels.proxiport.example.com/fullchain.pem&quot;</span>
+<span class="w">  </span><span class="n">key_file</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/etc/letsencrypt/live/tunnels.proxiport.example.com/privkey.pem&quot;</span>
+</code></pre></div>
+<p>The <code>subdomain_prefix</code> is the bare domain — <strong>do not include the
+leading <code>*.</code></strong>.</p>
+<p>The <code>[caddy-integration] address</code> port must be different from
+<code>[api] address</code>.</p>
+<p><strong>Shared port</strong> runs the API and the tunnel subdomains on one TCP
+port (443). Caddy fronts everything; the API runs as a plain-HTTP
+backend behind it:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[api]</span>
+<span class="w">  </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.0.0.0:3000&quot;</span>
+<span class="w">  </span><span class="c1"># cert_file and key_file MUST be commented out — Caddy terminates TLS.</span>
+
+<span class="k">[caddy-integration]</span>
+<span class="w">  </span><span class="n">caddy</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/usr/local/bin/caddy&quot;</span>
+<span class="w">  </span><span class="n">address</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.0.0.0:443&quot;</span>
+<span class="w">  </span><span class="n">subdomain_prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;tunnels.proxiport.example.com&quot;</span>
+<span class="w">  </span><span class="n">cert_file</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/etc/letsencrypt/live/tunnels.proxiport.example.com/fullchain.pem&quot;</span>
+<span class="w">  </span><span class="n">key_file</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/etc/letsencrypt/live/tunnels.proxiport.example.com/privkey.pem&quot;</span>
+
+<span class="w">  </span><span class="n">api_hostname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;proxiport-api.example.com&quot;</span>
+<span class="w">  </span><span class="n">api_cert_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/etc/letsencrypt/live/proxiport-api.example.com/fullchain.pem&quot;</span>
+<span class="w">  </span><span class="n">api_key_file</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/etc/letsencrypt/live/proxiport-api.example.com/privkey.pem&quot;</span>
+<span class="w">  </span><span class="n">api_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;3000&quot;</span>
+</code></pre></div>
+<p><code>api_port</code> must equal the port in <code>[api] address</code>. Caddy will SNI-route
+requests for <code>api_hostname</code> to the API backend; everything else under
+the wildcard goes to a tunnel.</p>
+<h3 id="using-it">Using it<a class="headerlink" href="#using-it" title="Permanent link">&para;</a></h3>
+<p>When creating a tunnel from the SPA's per-client <strong>Tunnels</strong> tab, tick
+one of:</p>
+<ul>
+<li><em>Enable HTTP reverse proxy</em> (for HTTP/HTTPS targets);</li>
+<li><em>Enable NoVNC (VNC via browser)</em>;</li>
+<li><em>Enable RDP via browser</em>.</li>
+</ul>
+<p>Any of those triggers subdomain allocation. The tunnel record now
+carries a <code>tunnel_url</code> field, and the SPA's "access tunnel" button
+points there instead of the random-port URL.</p>
+<p>To inspect the live Caddy routes:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--unix-socket<span class="w"> </span>/var/lib/proxiport/caddy-admin.sock<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;host:unix&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://localhost/config/apps/http/servers/srv0/routes<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</code></pre></div>
+<h2 id="novnc-proxy">NoVNC proxy<a class="headerlink" href="#novnc-proxy" title="Permanent link">&para;</a></h2>
+<p>For agents on hosts that expose a VNC server, ProxiPort can bridge to
+<a href="https://github.com/novnc/noVNC">noVNC</a> so the operator opens a
+browser tab and sees the remote desktop without installing a VNC
+client.</p>
+<h3 id="prerequisites_1">Prerequisites<a class="headerlink" href="#prerequisites_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>noVNC JavaScript bundle on the server's filesystem.</li>
+<li>TLS enabled on the tunnel proxy (<code>tunnel_proxy_cert_file</code> and
+  <code>tunnel_proxy_key_file</code>). NoVNC depends on the same TLS-fronted
+  reverse proxy that the subdomain feature uses.</li>
+</ul>
+<p>Install noVNC:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>curl<span class="w"> </span>-L<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>https://github.com/novnc/noVNC/archive/refs/tags/v1.3.0.zip<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>/tmp/novnc.zip
+sudo<span class="w"> </span>unzip<span class="w"> </span>-d<span class="w"> </span>/var/lib/proxiport<span class="w"> </span>/tmp/novnc.zip
+sudo<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>/tmp/novnc.zip
+</code></pre></div>
+<p>Point ProxiPort at the extracted directory:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[server]</span>
+<span class="w">  </span><span class="n">novnc_root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/lib/proxiport/noVNC-1.3.0&quot;</span>
+<span class="w">  </span><span class="n">tunnel_proxy_cert_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/lib/proxiport/server.crt&quot;</span>
+<span class="w">  </span><span class="n">tunnel_proxy_key_file</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/lib/proxiport/server.key&quot;</span>
+</code></pre></div>
+<p>Restart <code>proxiportd</code>. The tunnel-create form now exposes the
+"Enable NoVNC" option for tunnels targeting a VNC port.</p>
+<h2 id="rdp-proxy-via-guacd">RDP proxy via guacd<a class="headerlink" href="#rdp-proxy-via-guacd" title="Permanent link">&para;</a></h2>
+<p>For RDP access from a browser, ProxiPort proxies the chisel tunnel
+through an Apache Guacamole <code>guacd</code> daemon on the same host:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[server]</span>
+<span class="w">  </span><span class="n">guacd_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;127.0.0.1:4822&quot;</span>
+<span class="w">  </span><span class="n">tunnel_proxy_cert_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/lib/proxiport/server.crt&quot;</span>
+<span class="w">  </span><span class="n">tunnel_proxy_key_file</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/var/lib/proxiport/server.key&quot;</span>
+</code></pre></div>
+<p>You do not need a full Guacamole web stack — only <code>guacd</code>. Run it in
+a container:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>guacd<span class="w"> </span>--net<span class="o">=</span>host<span class="w"> </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>lscr.io/linuxserver/guacd
+</code></pre></div>
+<p><code>--net=host</code> is required so <code>guacd</code> can reach the tunnel listener on
+<code>127.0.0.1</code>. Once running, tunnels created with "Enable RDP via
+browser" expose a URL like
+<code>https://proxiport.example.com:&lt;port&gt;/</code> that loads the Guacamole
+client in the browser.</p>
+<p>You can pass through Guacamole session parameters as query strings:</p>
+<div class="highlight"><pre><span></span><code>/?username=Administrator&amp;width=1280&amp;height=800&amp;security=nla&amp;keyboard=en-us-qwerty
+</code></pre></div>
+<p>For security reasons the password cannot be injected — the operator
+types it into the Guacamole login form. Available <code>keyboard</code> values
+are the standard Guacamole layout codes (e.g. <code>en-us-qwerty</code>,
+<code>de-de-qwertz</code>, <code>fr-fr-azerty</code>).</p>
+<h2 id="file-reception">File reception<a class="headerlink" href="#file-reception" title="Permanent link">&para;</a></h2>
+<p>A separate but related capability: pushing a file from the server's
+disk to one or many agent hosts over the same chisel channel that
+carries tunnel traffic.</p>
+<h3 id="flow">Flow<a class="headerlink" href="#flow" title="Permanent link">&para;</a></h3>
+<ol>
+<li>The operator uploads the file to the server via the multipart
+   <code>POST /api/v1/files</code> endpoint, specifying target client IDs or
+   group IDs, the destination path, and optional mode/owner/group.</li>
+<li>The server saves the file to <code>{data_dir}/filepush/&lt;uuid&gt;</code>.</li>
+<li>Each addressed agent opens an SFTP-over-SSH session inside its
+   existing chisel channel, downloads the file to its own
+   <code>{data_dir}/filepush/&lt;uuid&gt;</code>, verifies the MD5, applies any
+   chmod/chown, and moves the file to the destination.</li>
+<li>The server tracks per-agent success/failure and surfaces it on the
+   API and on a WebSocket subscriber stream.</li>
+</ol>
+<p>A minimal upload:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-u<span class="w"> </span>admin:password<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://proxiport.example.com:3000/api/v1/login<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span>.data.token<span class="k">)</span>
+
+curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s1">&#39;upload=@./hosts.allow&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s1">&#39;client_id=alpha-prod&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s1">&#39;client_id=bravo-staging&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s1">&#39;dest=/etc/hosts.allow&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s1">&#39;force=true&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s1">&#39;mode=0644&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://proxiport.example.com:3000/api/v1/files
+</code></pre></div>
+<p>Useful form fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>upload</code> (required)</td>
+<td>The file body.</td>
+</tr>
+<tr>
+<td><code>client_id</code> / <code>group_id</code></td>
+<td>Repeatable. At least one of either is required.</td>
+</tr>
+<tr>
+<td><code>dest</code> (required)</td>
+<td>Absolute destination path on the agent.</td>
+</tr>
+<tr>
+<td><code>force</code></td>
+<td>Overwrite if the file already exists.</td>
+</tr>
+<tr>
+<td><code>sync</code></td>
+<td>Compare MD5; overwrite only if changed. Apply mode/owner if requested.</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>Unix mode bits, e.g. <code>0644</code>. Default <code>0764</code>.</td>
+</tr>
+<tr>
+<td><code>user</code>, <code>group</code></td>
+<td>Unix owner / group. Requires sudo on the agent for non-default owners.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="file-size-limit">File-size limit<a class="headerlink" href="#file-size-limit" title="Permanent link">&para;</a></h3>
+<p>Server side, <code>[api] max_filepush_size</code> caps the single-file size in
+bytes (default 10 MiB). Increase it under <code>[api]</code> if you need to push
+larger payloads. The general <code>max_request_bytes</code> cap does <strong>not</strong>
+apply to this endpoint.</p>
+<h3 id="restricted-destinations">Restricted destinations<a class="headerlink" href="#restricted-destinations" title="Permanent link">&para;</a></h3>
+<p>By default the agent refuses to write into directories listed in
+<code>[file-reception] protected</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[file-reception]</span>
+<span class="w">  </span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="n">protected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;/bin&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/sbin&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/boot&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/usr/bin&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/usr/sbin&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/dev&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/lib*&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/run&#39;</span><span class="p">]</span>
+<span class="w">  </span><span class="c1"># Windows defaults:</span>
+<span class="w">  </span><span class="c1"># protected = [&#39;C:\Windows\&#39;, &#39;C:\ProgramData&#39;]</span>
+</code></pre></div>
+<p>These are glob patterns matched against both the target directory and
+the target file path. To disable reception entirely, set <code>enabled = false</code>.</p>
+<h3 id="privileged-writes">Privileged writes<a class="headerlink" href="#privileged-writes" title="Permanent link">&para;</a></h3>
+<p>The agent runs as an unprivileged user. To let it chown a pushed file
+or write into a root-owned directory, add narrow sudoers rules:</p>
+<div class="highlight"><pre><span></span><code># /etc/sudoers.d/proxiport-filereception
+proxiport ALL=NOPASSWD: /usr/bin/chown * /var/lib/proxiport/filepush/*_proxiport_filepush
+proxiport ALL=NOPASSWD: /usr/bin/mv     /var/lib/proxiport/filepush/*_proxiport_filepush *
+</code></pre></div>
+<p>Limit the wildcards as much as your operational shape allows.</p>
+<h3 id="live-progress">Live progress<a class="headerlink" href="#live-progress" title="Permanent link">&para;</a></h3>
+<p><code>WS /ws/uploads</code> streams per-file results as they happen. Subscribers
+get JSON frames like:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;client_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;alpha-prod&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;uuid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;482ae29e-d372-4d21-8cb4-58d75482b7e1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;filepath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/etc/hosts.allow&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">17118</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file successfully copied to destination&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The test UI at <code>/api/v1/test/uploads/ui</code> (enable with
+<code>enable_ws_test_endpoints = true</code> under <code>[api]</code>) is the easiest way
+to see this in action.</p>
+<p>For long-term auditing, the result is also written to <code>auditlog.db</code>
+and surfaces on the <strong>Audit</strong> page.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Caddy fails to bind 443.</strong> Re-run
+  <code>sudo setcap 'cap_net_bind_service=+ep' $(which caddy)</code> after every
+  Caddy upgrade. The capability is on the binary and is lost when the
+  binary is replaced.</li>
+<li><strong>Tunnel URL returns a Caddy 404.</strong> The subdomain has not been
+  registered with Caddy yet — either the tunnel hasn't finished
+  creating, or <code>proxiportd</code> and Caddy lost sync. Check
+  <code>journalctl -u proxiportd -n 100 --no-pager</code> for ACME errors.</li>
+<li><strong>NoVNC loads but the canvas is blank.</strong> The agent could not reach
+  the VNC port on the target host. The tunnel itself is fine; the
+  agent-side TCP connect is failing.</li>
+<li><strong>File push reports "permission denied" on rename.</strong> The agent
+  user can't write to <code>dest</code>. Either change the destination or add a
+  sudoers rule and retry with the correct owner.</li>
+</ul>
+<p>See also: <a href="../https/">HTTPS</a> for the underlying TLS setup,
+<a href="../operator-runbook/#tunnels">operator runbook — tunnels</a> for ACLs and
+the per-tunnel SPA flow, and <a href="../architecture/">architecture</a> for the
+chisel transport details.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Proximile LLC. AGPL-3.0-or-later.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.sections", "navigation.top", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../assets/image-links.js"></script>
+      
+    
+  </body>
+</html>
