@@ -1,0 +1,2084 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Self-hosted remote-management server. Fully open source.">
+      
+      
+      
+        <link rel="canonical" href="https://docs.proxiport.net/install/">
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+        <link rel="next" href="../migration/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Install - ProxiPort</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#install" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ProxiPort" class="md-header__button md-logo" aria-label="ProxiPort" data-md-component="logo">
+      
+  <img src="../assets/wordmark.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ProxiPort
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Install
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/proximile/proxiport" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    proximile/proxiport
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ProxiPort" class="md-nav__button md-logo" aria-label="ProxiPort" data-md-component="logo">
+      
+  <img src="../assets/wordmark.svg" alt="logo">
+
+    </a>
+    ProxiPort
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/proximile/proxiport" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    proximile/proxiport
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../origin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Origin and licensing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changes-from-openrport/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What changed from openrport
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debian-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debian / Ubuntu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fedora-rhel-opensuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fedora / RHEL / openSUSE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarball-other-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarball (other distributions)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building from source
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-setup-with-proxiport-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick setup with proxiport-setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-just-happened" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What just happened
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pick-a-public-listener" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pick a public listener
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-the-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open the firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-the-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable the service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log in
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-install-debian-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual install — Debian / Ubuntu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-install-fedora-rhel-opensuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual install — Fedora / RHEL / openSUSE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-install-tarball-other-platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual install — tarball (other platforms)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrading-from-a-v012-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upgrading from a v0.1.2 install
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrating-from-rport-or-openrport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrating from rport or openrport
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-does-not-change-from-upstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What does not change from upstream
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrating from rport / openrport
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator-runbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Authentication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client-authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server hardening
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Server hardening
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../https/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ip-address-determination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IP-address determination
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with clients
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with clients
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../command-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command execution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tunnel-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnel hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../watchdog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Watchdog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vault/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vault
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client-groups-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client groups and permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client-attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client attributes file
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debian-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debian / Ubuntu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fedora-rhel-opensuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fedora / RHEL / openSUSE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarball-other-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarball (other distributions)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building from source
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-setup-with-proxiport-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick setup with proxiport-setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-just-happened" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What just happened
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pick-a-public-listener" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pick a public listener
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-the-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open the firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-the-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable the service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log in
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-install-debian-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual install — Debian / Ubuntu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-install-fedora-rhel-opensuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual install — Fedora / RHEL / openSUSE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-install-tarball-other-platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual install — tarball (other platforms)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrading-from-a-v012-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upgrading from a v0.1.2 install
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrating-from-rport-or-openrport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrating from rport or openrport
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-does-not-change-from-upstream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What does not change from upstream
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Just want to see it work?</p>
+<p>The public demo at
+<a href="https://demo.proxiport.net/"><code>https://demo.proxiport.net/</code></a> lets
+you sign in (<code>demo</code> / <code>demo</code>) and explore an Inventory of three
+pre-registered agents without installing anything. State resets
+on the half-hour.</p>
+</div>
+<p>ProxiPort has two pieces: the <strong>server</strong> (<code>proxiportd</code>) and the <strong>agent</strong>
+(<code>proxiport</code>). One server reaches many agents; the agent dials the server
+over an outbound WebSocket, so it works behind NAT without inbound
+firewall rules.</p>
+<p>This page covers a single-server install on Linux and a single Linux
+agent. macOS and Windows agents follow the same shape with the
+platform-native service manager.</p>
+<h2 id="server">Server<a class="headerlink" href="#server" title="Permanent link">&para;</a></h2>
+<h3 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Linux x86_64 or arm64 with systemd.</li>
+<li>A public hostname pointed at the host. The <strong>Pick a public listener</strong>
+  step below walks through the three TLS setups (built-in ACME, manual
+  cert, reverse proxy) — all of them need a hostname.</li>
+<li>Ports 80 and 443 reachable from the network you want agents to
+  connect from (80 for the agent listener and ACME HTTP-01 challenges,
+  443 for the TLS API).</li>
+<li>SQLite is the default datastore; MySQL is also supported.</li>
+</ul>
+<h3 id="install_1">Install<a class="headerlink" href="#install_1" title="Permanent link">&para;</a></h3>
+<p>Each release on the
+<a href="https://github.com/proximile/proxiport/releases">GitHub releases page</a>
+ships the server for <code>linux/amd64</code> and <code>linux/arm64</code> in three formats:</p>
+<ul>
+<li><strong>Debian/Ubuntu <code>.deb</code></strong> — <code>proxiportd_&lt;ver&gt;_linux_&lt;arch&gt;.deb</code></li>
+<li><strong>Fedora/RHEL/openSUSE <code>.rpm</code></strong> — <code>proxiportd_&lt;ver&gt;_linux_&lt;arch&gt;.rpm</code></li>
+<li><strong>Tarball</strong> — <code>proxiportd_&lt;ver&gt;_linux_&lt;arch&gt;.tar.gz</code>, for other
+  distributions</li>
+</ul>
+<p>Asset filenames carry the version; the snippets below resolve the
+latest tag from the GitHub API before downloading. Substitute <code>arm64</code>
+for <code>x86_64</code> on aarch64 hosts.</p>
+<h4 id="debian-ubuntu">Debian / Ubuntu<a class="headerlink" href="#debian-ubuntu" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">VER</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://api.github.com/repos/proximile/proxiport/releases/latest<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/.*&quot;tag_name&quot;: *&quot;\([^&quot;]*\)&quot;.*/\1/p&#39;</span><span class="k">)</span>
+curl<span class="w"> </span>-LO<span class="w"> </span><span class="s2">&quot;https://github.com/proximile/proxiport/releases/download/</span><span class="si">${</span><span class="nv">VER</span><span class="si">}</span><span class="s2">/proxiportd_</span><span class="si">${</span><span class="nv">VER</span><span class="p">#v</span><span class="si">}</span><span class="s2">_linux_x86_64.deb&quot;</span>
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;proxiportd_</span><span class="si">${</span><span class="nv">VER</span><span class="p">#v</span><span class="si">}</span><span class="s2">_linux_x86_64.deb&quot;</span>
+</code></pre></div>
+<h4 id="fedora-rhel-opensuse">Fedora / RHEL / openSUSE<a class="headerlink" href="#fedora-rhel-opensuse" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">VER</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://api.github.com/repos/proximile/proxiport/releases/latest<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/.*&quot;tag_name&quot;: *&quot;\([^&quot;]*\)&quot;.*/\1/p&#39;</span><span class="k">)</span>
+sudo<span class="w"> </span>rpm<span class="w"> </span>-ivh<span class="w"> </span><span class="s2">&quot;https://github.com/proximile/proxiport/releases/download/</span><span class="si">${</span><span class="nv">VER</span><span class="si">}</span><span class="s2">/proxiportd_</span><span class="si">${</span><span class="nv">VER</span><span class="p">#v</span><span class="si">}</span><span class="s2">_linux_x86_64.rpm&quot;</span>
+</code></pre></div>
+<h4 id="tarball-other-distributions">Tarball (other distributions)<a class="headerlink" href="#tarball-other-distributions" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">VER</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://api.github.com/repos/proximile/proxiport/releases/latest<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/.*&quot;tag_name&quot;: *&quot;\([^&quot;]*\)&quot;.*/\1/p&#39;</span><span class="k">)</span>
+curl<span class="w"> </span>-LO<span class="w"> </span><span class="s2">&quot;https://github.com/proximile/proxiport/releases/download/</span><span class="si">${</span><span class="nv">VER</span><span class="si">}</span><span class="s2">/proxiportd_</span><span class="si">${</span><span class="nv">VER</span><span class="p">#v</span><span class="si">}</span><span class="s2">_linux_x86_64.tar.gz&quot;</span>
+tar<span class="w"> </span>xzf<span class="w"> </span><span class="s2">&quot;proxiportd_</span><span class="si">${</span><span class="nv">VER</span><span class="p">#v</span><span class="si">}</span><span class="s2">_linux_x86_64.tar.gz&quot;</span>
+
+sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>proxiportd<span class="w"> </span>/usr/bin/proxiportd
+sudo<span class="w"> </span>install<span class="w"> </span>-d<span class="w"> </span>/etc/proxiport
+sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0644</span><span class="w"> </span>proxiportd.example.conf<span class="w"> </span>/etc/proxiport/proxiportd.conf
+sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0644</span><span class="w"> </span>proxiportd.service<span class="w"> </span>/lib/systemd/system/proxiportd.service
+
+sudo<span class="w"> </span>useradd<span class="w"> </span>--system<span class="w"> </span>--home<span class="w"> </span>/var/lib/proxiport<span class="w"> </span>--shell<span class="w"> </span>/usr/sbin/nologin<span class="w"> </span>proxiport<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+getent<span class="w"> </span>group<span class="w"> </span>ssl-cert<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>sudo<span class="w"> </span>groupadd<span class="w"> </span>--system<span class="w"> </span>ssl-cert
+sudo<span class="w"> </span>install<span class="w"> </span>-d<span class="w"> </span>-o<span class="w"> </span>proxiport<span class="w"> </span>-g<span class="w"> </span>proxiport<span class="w"> </span>-m<span class="w"> </span><span class="m">0750</span><span class="w"> </span>/var/lib/proxiport
+sudo<span class="w"> </span>install<span class="w"> </span>-d<span class="w"> </span>-o<span class="w"> </span>proxiport<span class="w"> </span>-g<span class="w"> </span>proxiport<span class="w"> </span>-m<span class="w"> </span><span class="m">0750</span><span class="w"> </span>/var/log/proxiport
+sudo<span class="w"> </span>setcap<span class="w"> </span><span class="nv">CAP_NET_BIND_SERVICE</span><span class="o">=</span>+eip<span class="w"> </span>/usr/bin/proxiportd
+sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+</code></pre></div>
+<p>The <code>ssl-cert</code> group is listed in the unit's <code>SupplementaryGroups</code> so
+the daemon can read certbot/manual TLS keys — systemd will not start
+the service if the group is missing. <code>setcap</code> ships in <code>libcap2-bin</code>
+(Debian/Ubuntu) or <code>libcap</code> (RHEL-family) if your base install lacks
+it.</p>
+<p>Tarball installs do not auto-generate secrets or seed the config; the
+<strong>Configure</strong> step below covers what to set by hand.</p>
+<h4 id="building-from-source">Building from source<a class="headerlink" href="#building-from-source" title="Permanent link">&para;</a></h4>
+<p>If none of the published artefacts fit your platform — or you want a
+container image, which we do not publish — build from source:</p>
+<div class="highlight"><pre><span></span><code>go<span class="w"> </span>install<span class="w"> </span>github.com/proximile/proxiport/cmd/proxiportd@latest
+</code></pre></div>
+<p>The server needs CGO (<code>CGO_ENABLED=1</code>) for the embedded SQLite. The
+agent is pure Go.</p>
+<p>The version string is injected at release time via linker flags, so a
+plain <code>go build</code> / <code>go install</code> reports <code>0.0.0-src</code> for
+<code>proxiportd --version</code> (and <code>proxiport --version</code>). That is expected — to
+stamp a real version into a source build, pass the ldflag yourself:</p>
+<div class="highlight"><pre><span></span><code>go<span class="w"> </span>build<span class="w"> </span>-ldflags<span class="w"> </span><span class="s2">&quot;-X github.com/proximile/proxiport/share.BuildVersion=0.6.0&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>./cmd/proxiportd
+</code></pre></div>
+<h3 id="quick-setup-with-proxiport-setup">Quick setup with <code>proxiport-setup</code><a class="headerlink" href="#quick-setup-with-proxiport-setup" title="Permanent link">&para;</a></h3>
+<p>If this is a single-host install with a public hostname pointed at it,
+the <code>proxiport-setup</code> script bundled with the <code>.deb</code> / <code>.rpm</code> does
+everything below in one command:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>proxiport-setup<span class="w"> </span>--fqdn<span class="w"> </span>proxiport.example.com
+</code></pre></div>
+<p>It mirrors the upstream openrport curl-bash installer: takes <code>--fqdn</code>,
+<code>--email</code>, <code>--api-port</code>, <code>--client-port</code>, <code>--port-range</code>, <code>--totp</code> /
+<code>--no-2fa</code>; opens UFW or firewalld rules; rewrites <code>proxiportd.conf</code> to
+bind <code>:80</code> for agents and <code>:443</code> for the API; turns on built-in ACME if
+the hostname is publicly resolvable (or accepts <code>--cert-file</code> /
+<code>--key-file</code> for an existing PEM pair); creates a SQLite
+<code>users</code>/<code>groups</code>/<code>group_details</code>/<code>clients_auth</code> schema with a
+bcrypt-hashed random admin password; enables TOTP 2FA by default;
+starts <code>proxiportd</code>; and prints the admin URL and credentials.</p>
+<p>If that fits your install, jump to <strong><a href="#log-in">Log in</a></strong>. If you want
+to lay it out by hand, read on — the remaining sections walk through
+exactly what the script automates.</p>
+<h3 id="what-just-happened">What just happened<a class="headerlink" href="#what-just-happened" title="Permanent link">&para;</a></h3>
+<p>The <code>.deb</code> / <code>.rpm</code> post-install ran four steps the operator otherwise
+has to do manually:</p>
+<ul>
+<li>generated a random ECDSA <code>key_seed</code>, JWT signing secret, admin
+  password, and first agent credential — all written into
+  <code>/etc/proxiport/proxiportd.conf</code> in place of the example placeholders;</li>
+<li>
+<p>recorded the admin and client-auth credentials in two files under
+  <code>/var/lib/proxiport/</code>:</p>
+<div class="highlight"><pre><span></span><code>/var/lib/proxiport/initial-admin-password   # SPA login
+/var/lib/proxiport/initial-client-auth      # first agent&#39;s auth pair
+</code></pre></div>
+<p>Both files are mode <code>0640 root:proxiport</code>. Read with <code>sudo cat</code>.
+They are <strong>shredded from disk the first time an admin logs in with a
+password</strong>, so retrieve them and store the credentials in a password
+manager before that first login.</p>
+</li>
+<li>
+<p>granted <code>CAP_NET_BIND_SERVICE</code> on <code>/usr/bin/proxiportd</code> so the
+  unprivileged <code>proxiport</code> user can bind ports 80 and 443;</p>
+</li>
+<li>created <code>/var/lib/proxiport</code> (state) and <code>/var/log/proxiport</code> (logs)
+  with <code>proxiport</code> ownership.</li>
+</ul>
+<p>The server is <strong>not yet enabled</strong>. The seeded config binds the API to
+<code>127.0.0.1</code> only, so nothing is reachable from the network until the
+next step (or until you run <code>proxiport-setup</code>, which handles all of
+this in one shot).</p>
+<p>At-rest field encryption is <strong>off by default</strong>, so the seeded
+<code>totp_secret</code> column, the vault, and the freshly generated <code>key_seed</code> /
+<code>jwt_secret</code> in the config are all stored unencrypted. To wrap them
+under a server-held key, configure a <code>[key_provider]</code> — see the
+<code>[key_provider]</code> section of <code>proxiportd.example.conf</code>,
+<a href="../operator-runbook/#encrypting-the-config-secrets">encrypting the config secrets</a>,
+and <a href="../api-authentication/#two-factor-authentication">Two-factor authentication</a>.</p>
+<h3 id="pick-a-public-listener">Pick a public listener<a class="headerlink" href="#pick-a-public-listener" title="Permanent link">&para;</a></h3>
+<p>The seeded config leaves <code>[api] address = "127.0.0.1:3000"</code> so nothing
+is exposed off-box until you choose how TLS will be served. There are
+three working setups; pick one and edit <code>/etc/proxiport/proxiportd.conf</code>
+accordingly. Full walk-through with worked examples is in
+<a href="../https/">HTTPS</a>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Built-in ACME (easiest)</label><label for="__tabbed_1_2">Manual cert files</label><label for="__tabbed_1_3">Reverse proxy</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Single-purpose host with a public DNS A record pointing at it and
+port 80 reachable from the internet for Let's Encrypt's HTTP-01
+challenge. <code>proxiportd</code> obtains and renews the certificate itself.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[api]</span>
+<span class="w">  </span><span class="n">address</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.0.0.0:443&quot;</span>
+<span class="w">  </span><span class="n">base_url</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://proxiport.example.com&quot;</span>
+<span class="w">  </span><span class="n">enable_acme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Bring your own cert + key (certbot --manual, internal CA, anything
+PEM). Both files must be readable by the <code>proxiport</code> system user.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[api]</span>
+<span class="w">  </span><span class="n">address</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.0.0.0:443&quot;</span>
+<span class="w">  </span><span class="n">base_url</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://proxiport.example.com&quot;</span>
+<span class="w">  </span><span class="n">cert_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/etc/proxiport/tls/fullchain.pem&quot;</span>
+<span class="w">  </span><span class="n">key_file</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/etc/proxiport/tls/privkey.pem&quot;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>nginx / Caddy / Traefik terminates TLS upstream and forwards plain
+HTTP to <code>proxiportd</code> over loopback. Keep <code>address = "127.0.0.1:3000"</code>
+in the seeded config and point your proxy at it. See
+<a href="../https/#external-reverse-proxy-in-front">HTTPS</a> for the directives
+each proxy needs for the WebSocket upgrade.</p>
+</div>
+</div>
+</div>
+<h3 id="open-the-firewall">Open the firewall<a class="headerlink" href="#open-the-firewall" title="Permanent link">&para;</a></h3>
+<p>Wherever your server runs there is probably one host-level firewall and
+one cloud-level firewall. Both need port 80 (for the agent listener and
+ACME HTTP-01) and 443 (for the TLS API), unless you went with the
+reverse-proxy option.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">UFW (Ubuntu)</label><label for="__tabbed_2_2">firewalld (RHEL / Fedora)</label><label for="__tabbed_2_3">DigitalOcean / AWS / GCP</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">80</span>/tcp
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">443</span>/tcp
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--add-service<span class="o">=</span>http<span class="w">  </span>--permanent
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--add-service<span class="o">=</span>https<span class="w"> </span>--permanent
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>On hyperscalers the host firewall above only opens the kernel —
+the cloud's network firewall is what the public internet sees. Add
+inbound TCP rules for <code>80</code> and <code>443</code> to the droplet's Cloud
+Firewall (DO), the instance's Security Group (AWS), or the VPC
+firewall (GCP).</p>
+</div>
+</div>
+</div>
+<h3 id="enable-the-service">Enable the service<a class="headerlink" href="#enable-the-service" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>proxiportd
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>proxiportd
+</code></pre></div>
+<p>If the unit fails to start, <code>journalctl -u proxiportd -n 50</code> shows
+why — the most common causes are an <code>[api] address</code> that's already in
+use, a <code>base_url</code> whose hostname does not resolve, or <code>cert_file</code> /
+<code>key_file</code> paths the <code>proxiport</code> user cannot read.</p>
+<h3 id="log-in">Log in<a class="headerlink" href="#log-in" title="Permanent link">&para;</a></h3>
+<p>Read the random admin password generated at install time:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cat<span class="w"> </span>/var/lib/proxiport/initial-admin-password
+</code></pre></div>
+<p>Open <code>https://&lt;your-host&gt;/</code> in a browser and sign in. Rotate the
+password from the Profile screen once you're in.</p>
+<p><img alt="ProxiPort login screen." src="../screenshots/00-login-screen.png" /></p>
+<p>The <strong>Info</strong> page is where the host-key fingerprint and the
+Connect-URL list live — both are needed when configuring agents.</p>
+<p><img alt="Server info — copy the fingerprint into each agent's
+proxiport.conf to pin it." src="../screenshots/23-server-info-2fa-off.png" /></p>
+<h2 id="agent">Agent<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h2>
+<h3 id="requirements_1">Requirements<a class="headerlink" href="#requirements_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Linux / macOS / Windows.</li>
+<li>Outbound TCP from the agent host to the server's <code>[server]</code>
+  listener — port 80 in the seeded default. Agents never accept
+  inbound connections, so no firewall changes are needed on their
+  side.</li>
+</ul>
+<h3 id="install_2">Install<a class="headerlink" href="#install_2" title="Permanent link">&para;</a></h3>
+<p>The fastest way to bring up a new agent is the <strong>pairing service</strong> at
+<a href="https://pairing.proxiport.net/"><code>pairing.proxiport.net</code></a>: the operator
+posts the agent's credentials, the service mints a one-shot pairing
+code, the agent host runs</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>https://pairing.proxiport.net/&lt;code&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>sh
+</code></pre></div>
+<p>and the installer drops a working binary plus <code>proxiport.conf</code> into
+place. Source for the pairing service: <a href="https://github.com/proximile/proxiport-pairing">https://github.com/proximile/proxiport-pairing</a>.</p>
+<p>The agent ships in the same three package formats as the server, plus
+tarballs for a wider platform list: linux (amd64, arm64, i386, armv6,
+armv7, mips/mipsle/mips64/mips64le hard- and softfloat, s390x), macOS
+(amd64, arm64), Windows (amd64), and FreeBSD (amd64, arm64, armv6,
+armv7, i386). <code>.deb</code> and <code>.rpm</code> are published for every Linux variant.</p>
+<h4 id="manual-install-debian-ubuntu">Manual install — Debian / Ubuntu<a class="headerlink" href="#manual-install-debian-ubuntu" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">VER</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://api.github.com/repos/proximile/proxiport/releases/latest<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/.*&quot;tag_name&quot;: *&quot;\([^&quot;]*\)&quot;.*/\1/p&#39;</span><span class="k">)</span>
+curl<span class="w"> </span>-LO<span class="w"> </span><span class="s2">&quot;https://github.com/proximile/proxiport/releases/download/</span><span class="si">${</span><span class="nv">VER</span><span class="si">}</span><span class="s2">/proxiport_</span><span class="si">${</span><span class="nv">VER</span><span class="p">#v</span><span class="si">}</span><span class="s2">_linux_x86_64.deb&quot;</span>
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;proxiport_</span><span class="si">${</span><span class="nv">VER</span><span class="p">#v</span><span class="si">}</span><span class="s2">_linux_x86_64.deb&quot;</span>
+</code></pre></div>
+<h4 id="manual-install-fedora-rhel-opensuse">Manual install — Fedora / RHEL / openSUSE<a class="headerlink" href="#manual-install-fedora-rhel-opensuse" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">VER</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://api.github.com/repos/proximile/proxiport/releases/latest<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/.*&quot;tag_name&quot;: *&quot;\([^&quot;]*\)&quot;.*/\1/p&#39;</span><span class="k">)</span>
+sudo<span class="w"> </span>rpm<span class="w"> </span>-ivh<span class="w"> </span><span class="s2">&quot;https://github.com/proximile/proxiport/releases/download/</span><span class="si">${</span><span class="nv">VER</span><span class="si">}</span><span class="s2">/proxiport_</span><span class="si">${</span><span class="nv">VER</span><span class="p">#v</span><span class="si">}</span><span class="s2">_linux_x86_64.rpm&quot;</span>
+</code></pre></div>
+<h4 id="manual-install-tarball-other-platforms">Manual install — tarball (other platforms)<a class="headerlink" href="#manual-install-tarball-other-platforms" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nv">VER</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://api.github.com/repos/proximile/proxiport/releases/latest<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/.*&quot;tag_name&quot;: *&quot;\([^&quot;]*\)&quot;.*/\1/p&#39;</span><span class="k">)</span>
+curl<span class="w"> </span>-LO<span class="w"> </span><span class="s2">&quot;https://github.com/proximile/proxiport/releases/download/</span><span class="si">${</span><span class="nv">VER</span><span class="si">}</span><span class="s2">/proxiport_</span><span class="si">${</span><span class="nv">VER</span><span class="p">#v</span><span class="si">}</span><span class="s2">_linux_x86_64.tar.gz&quot;</span>
+tar<span class="w"> </span>xzf<span class="w"> </span><span class="s2">&quot;proxiport_</span><span class="si">${</span><span class="nv">VER</span><span class="p">#v</span><span class="si">}</span><span class="s2">_linux_x86_64.tar.gz&quot;</span>
+
+sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>proxiport<span class="w"> </span>/usr/bin/proxiport
+sudo<span class="w"> </span>install<span class="w"> </span>-d<span class="w"> </span>/etc/proxiport
+sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0644</span><span class="w"> </span>proxiport.example.conf<span class="w"> </span>/etc/proxiport/proxiport.conf
+sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0644</span><span class="w"> </span>proxiport.service<span class="w"> </span>/lib/systemd/system/proxiport.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+</code></pre></div>
+<h3 id="configure-the-agent">Configure the agent<a class="headerlink" href="#configure-the-agent" title="Permanent link">&para;</a></h3>
+<p>Edit <code>/etc/proxiport/proxiport.conf</code> and set three fields:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[client]</span>
+<span class="w">  </span><span class="n">server</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;your-proxiport-server.example.com:80&quot;</span>
+<span class="w">  </span><span class="n">auth</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;client-auth-id&gt;:&lt;password&gt;&quot;</span>
+<span class="w">  </span><span class="n">fingerprint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;server-host-key-fingerprint&gt;&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>server</code></strong> — the address the agent dials. Port should match what the
+  proxiportd <code>[server]</code> listener was bound to; the seeded default is 80.</li>
+<li><strong><code>auth</code></strong> — pull the first credential off the server with
+  <code>sudo cat /var/lib/proxiport/initial-client-auth</code>, or any later
+  credential you've created. Both halves of <code>&lt;id&gt;:&lt;password&gt;</code> go in.</li>
+<li><strong><code>fingerprint</code></strong> — the proxiportd host-key fingerprint, printed in
+  the server's log on first boot and shown on the SPA's <strong>Info</strong> page.
+  Without it, the agent will accept whatever public key the server
+  presents — fine for testing, never for production. Prefer the
+  <strong>SHA-256</strong> value (starts with <code>SHA256:</code>): the agent matches it in
+  full, in constant time. The legacy MD5 colon-hex form still works but
+  is deprecated.</li>
+</ul>
+<p>Then start the service:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>proxiport
+</code></pre></div>
+<p>The agent connects, registers, and waits for tunnel-open requests from
+the server. It reconnects automatically.</p>
+<p>Refresh the SPA. The new agent shows up in the inventory.</p>
+<p><img alt="Inventory with the first agent online." src="../screenshots/01-inventory-dashboard.png" /></p>
+<h2 id="upgrading-from-a-v012-install">Upgrading from a v0.1.2 install<a class="headerlink" href="#upgrading-from-a-v012-install" title="Permanent link">&para;</a></h2>
+<p>v0.1.3 changes two things that already-running v0.1.2 installs do not
+pick up automatically — the package postinstall deliberately leaves an
+existing <code>/etc/proxiport/proxiportd.conf</code> alone.</p>
+<ul>
+<li><strong><code>[api] address</code> default moved from <code>0.0.0.0:3000</code> to <code>127.0.0.1:3000</code>.</strong>
+  v0.1.2 servers that have always relied on the example config will
+  still listen on 3000 publicly until you switch them onto one of the
+  three public-listener profiles above. Until then, the API is reachable
+  on plain HTTP, which is exactly what the v0.1.3 defaults are meant
+  to stop.</li>
+<li><strong>Random secrets and initial credential files</strong> are only generated on
+  first install. If you set <code>key_seed</code> / <code>jwt_secret</code> / <code>[api] auth</code>
+  yourself when bringing v0.1.2 up, nothing to do. If you left them at
+  the example placeholders (<code>&lt;YOUR_SEED&gt;</code>, <code>&lt;YOUR_SECRET&gt;</code>,
+  <code>admin:foobaz</code>, <code>clientAuth1:1234</code>), generate replacements manually
+  before upgrading — <code>openssl rand -hex 32</code> for the seed,
+  <code>openssl rand -base64 24</code> for the JWT secret, anything strong for
+  the auth strings.</li>
+</ul>
+<p>Otherwise the upgrade is <code>dpkg -i</code> / <code>rpm -Uvh</code> of the new package and
+<code>systemctl restart proxiportd</code>. Config schema is unchanged.</p>
+<h2 id="migrating-from-rport-or-openrport">Migrating from rport or openrport<a class="headerlink" href="#migrating-from-rport-or-openrport" title="Permanent link">&para;</a></h2>
+<p>ProxiPort's config file format is intentionally compatible with the
+upstream <code>rportd.conf</code> and <code>rport.conf</code>. Tags and option names are
+unchanged where the underlying behaviour is unchanged.</p>
+<p>To migrate:</p>
+<ol>
+<li>Stop the upstream service (<code>rportd</code> or <code>openrportd</code>).</li>
+<li>Install ProxiPort using the Debian/Ubuntu, Fedora/RHEL, or tarball
+   path above.</li>
+<li>Copy your existing <code>rportd.conf</code> to <code>/etc/proxiport/proxiportd.conf</code>.</li>
+<li>Start <code>proxiportd</code>.</li>
+<li>On each agent, replace the upstream binary, copy the config to
+   <code>/etc/proxiport/proxiport.conf</code>, and start <code>proxiport</code>. Re-issue
+   the <code>fingerprint</code> if the server's host key has changed.</li>
+</ol>
+<p>The datastore schema is forwards-compatible from the openrport tree;
+ProxiPort runs any pending migrations on first start.</p>
+<h2 id="what-does-not-change-from-upstream">What does not change from upstream<a class="headerlink" href="#what-does-not-change-from-upstream" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Config file format</strong> — TOML, structurally compatible with
+  <code>rportd.conf</code> / <code>rport.conf</code>.</li>
+<li><strong>Tunnel transport defaults</strong> — chisel over WebSocket. Serve it
+  over TLS in production (built-in <code>cert_file</code>/<code>enable_acme</code> on the
+  server, or an external reverse proxy — see <a href="../https/">HTTPS</a>).</li>
+<li><strong>Datastore</strong> — SQLite by default, MySQL supported.</li>
+<li><strong>REST API surface</strong> — the same endpoints, the same response shapes.
+  See the API reference.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Proximile LLC. AGPL-3.0-or-later.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.sections", "navigation.top", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../assets/image-links.js"></script>
+      
+    
+  </body>
+</html>
