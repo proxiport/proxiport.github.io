@@ -1,0 +1,2218 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Self-hosted remote-management server. Fully open source.">
+      
+      
+      
+        <link rel="canonical" href="https://docs.proxiport.net/operator-runbook/">
+      
+      
+        <link rel="prev" href="../migration/">
+      
+      
+        <link rel="next" href="../api-authentication/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Operator runbook - ProxiPort</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#operator-runbook" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ProxiPort" class="md-header__button md-logo" aria-label="ProxiPort" data-md-component="logo">
+      
+  <img src="../assets/wordmark.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ProxiPort
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Operator runbook
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/proximile/proxiport" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    proximile/proxiport
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ProxiPort" class="md-nav__button md-logo" aria-label="ProxiPort" data-md-component="logo">
+      
+  <img src="../assets/wordmark.svg" alt="logo">
+
+    </a>
+    ProxiPort
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/proximile/proxiport" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    proximile/proxiport
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../origin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Origin and licensing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changes-from-openrport/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What changed from openrport
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrating from rport / openrport
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator runbook
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#service-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paths
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backups
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypting-the-config-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encrypting the config secrets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-else-the-key-provider-encrypts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What else the key provider encrypts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rotating-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotating credentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacity-and-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity and limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tunnels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tunnels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tunnels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-and-reusing-tunnels-from-the-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding and reusing tunnels from the API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tunnels-survive-an-agent-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tunnels survive an agent restart
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands-and-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commands and scripts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schedules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schedules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File transfer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit log
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Audit log">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tamper-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tamper-evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-and-group-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User and group admin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-get-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to get help
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Authentication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client-authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server hardening
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Server hardening
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../https/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ip-address-determination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IP-address determination
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anonymous-transport/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anonymous transport (Tor / VPN)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with clients
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with clients
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../command-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command execution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tunnel-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tunnel hosting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../e2e-forwarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    End-to-end encrypted forwarding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../watchdog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Watchdog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vault/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vault
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client-groups-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client groups and permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client-attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client attributes file
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#service-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paths
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backups
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypting-the-config-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encrypting the config secrets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-else-the-key-provider-encrypts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What else the key provider encrypts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rotating-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotating credentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacity-and-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity and limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tunnels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tunnels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tunnels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-and-reusing-tunnels-from-the-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding and reusing tunnels from the API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tunnels-survive-an-agent-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tunnels survive an agent restart
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands-and-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commands and scripts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schedules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schedules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File transfer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit log
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Audit log">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tamper-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tamper-evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-and-group-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User and group admin
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-get-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to get help
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="operator-runbook">Operator runbook<a class="headerlink" href="#operator-runbook" title="Permanent link">&para;</a></h1>
+<p>Short reference for keeping a ProxiPort server healthy. Not a full
+admin guide — see <a href="../install/">install</a> and <a href="../migration/">migration</a>
+for the first-run setup.</p>
+<h2 id="service-control">Service control<a class="headerlink" href="#service-control" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Server</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>proxiportd
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>proxiportd
+sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/proxiport/proxiportd.log
+sudo<span class="w"> </span>journalctl<span class="w"> </span>-u<span class="w"> </span>proxiportd<span class="w"> </span>-n<span class="w"> </span><span class="m">50</span><span class="w">   </span><span class="c1"># startup failures</span>
+
+<span class="c1"># Agent</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>proxiport
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>proxiport
+sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/proxiport-agent/proxiport.log
+</code></pre></div>
+<p>Both programs log to the file set by <code>[logging] log_file</code>, and only to
+stdout (and so to the journal) when <code>log_file</code> is left empty. With the
+shipped configs the journal shows service start/stop and errors printed
+before the log file is open.</p>
+<h2 id="paths">Paths<a class="headerlink" href="#paths" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server config</td>
+<td><code>/etc/proxiport/proxiportd.conf</code></td>
+</tr>
+<tr>
+<td>Server data</td>
+<td><code>/var/lib/proxiport/</code></td>
+</tr>
+<tr>
+<td>Server SPA files</td>
+<td><code>/usr/share/proxiport/docroot/</code> (root-owned, read-only for the daemon)</td>
+</tr>
+<tr>
+<td>Server logs (default)</td>
+<td><code>/var/log/proxiport/proxiportd.log</code> (<code>[logging] log_file</code>; journald only if it is left empty)</td>
+</tr>
+<tr>
+<td>Agent config</td>
+<td><code>/etc/proxiport/proxiport.conf</code></td>
+</tr>
+<tr>
+<td>Agent binary (<code>.deb</code> / <code>.rpm</code> package or tarball)</td>
+<td><code>/usr/bin/proxiport</code>, unit at <code>/lib/systemd/system/proxiport.service</code></td>
+</tr>
+<tr>
+<td>Agent binary (pairing installer)</td>
+<td><code>/usr/local/bin/proxiport</code>, unit written by <code>proxiport --service install</code></td>
+</tr>
+<tr>
+<td>Agent data</td>
+<td><code>/var/lib/proxiport-agent/</code> (<code>[client] data_dir</code>)</td>
+</tr>
+<tr>
+<td>Agent log (default)</td>
+<td><code>/var/log/proxiport-agent/proxiport.log</code> (<code>[logging] log_file</code>; journald only if it is left empty)</td>
+</tr>
+</tbody>
+</table>
+<p>Use the binary path that matches how the agent was installed when you
+write sudoers rules, watchdog units or command allow-lists.</p>
+<h2 id="backups">Backups<a class="headerlink" href="#backups" title="Permanent link">&para;</a></h2>
+<p>The server keeps everything that matters in two places:</p>
+<ul>
+<li><strong>SQLite databases</strong> under <code>/var/lib/proxiport/</code>. The set as of
+  this writing: <code>clients.db</code>, <code>monitoring.db</code>, <code>library.db</code>,
+  <code>auditlog.db</code>, <code>api_sessions.db</code>, <code>api_token.db</code>,
+  <code>client_groups.db</code>, <code>jobs.db</code>, <code>notifications.db</code>, and the vault
+  store at <code>vault.sqlite.db</code>. All of them except the vault store are
+  created, with their schema, the first time the server starts
+  (<code>auditlog.db</code> only while the audit log is enabled);
+  <code>vault.sqlite.db</code> appears once the vault is initialised. When the
+  audit log rotates it also leaves <code>auditlog.&lt;timestamp&gt;.db</code> files in
+  the same directory, so include those too. Back the directory up
+  with a stop-the-world snapshot or with the SQLite <code>.backup</code>
+  command for hot backups.</li>
+<li><strong><code>/etc/proxiport/proxiportd.conf</code></strong> — the config with the
+  pinned <code>key_seed</code>, <code>jwt_secret</code>, and admin credentials. Treat it as
+  a secret in its own right, or encrypt those settings — see
+  <a href="#encrypting-the-config-secrets">encrypting the config secrets</a>.</li>
+<li><strong>The at-rest DEK key file</strong> (if <code>[key_provider] type = "file"</code>
+  is configured) — losing it makes all of this unreadable: the
+  encrypted <code>totp_secret</code> column, the entire vault, any encrypted
+  config setting, stored command and script output in <code>jobs.db</code>, and
+  the process and mountpoint data in <code>monitoring.db</code> (see
+  <a href="#what-else-the-key-provider-encrypts">What else the key provider encrypts</a>).
+  Back it up <strong>out-of-band</strong>, not only inside the
+  <code>data_dir</code> tarball, and ideally keep it off the disk that holds
+  the databases.</li>
+</ul>
+<p>User auth lives either in a JSON file (<code>[api] auth_file = "..."</code>)
+or in user and group tables (<code>[api] auth_user_table</code> /
+<code>auth_group_table</code>) in the separate <code>[database]</code> connection — a
+MySQL/MariaDB database or the stand-alone SQLite file named by
+<code>[database] db_name</code>, not one of the per-feature files above. Back up
+whichever one you use alongside the SQLite files.</p>
+<p>Tarball both directories for the simplest backup. Restore by
+stopping the service, replacing the directories, and starting again.</p>
+<p>The <code>[database]</code> section (<code>db_type = "mysql"</code> or <code>"sqlite"</code>) holds
+only the optional API-user (<code>auth_user_table</code>) and client-auth
+(<code>auth_table</code>) tables. It does not replace the SQLite files in
+<code>data_dir</code>, which still need the backup described above. If you
+configured it, back that database up too: with your usual MySQL tooling
+for MySQL/MariaDB, or by copying the SQLite file it points to, which
+may live outside <code>data_dir</code>.</p>
+<p>The <strong>vault</strong> is a special case. It is encrypted at rest with a
+passphrase that is never written to disk (and, when a <code>[key_provider]</code>
+is configured, additionally wrapped under the server DEK), so a server
+restart always re-locks it — back up <code>vault.sqlite.db</code> alongside the
+other databases and remember that restoring it requires re-entering the
+passphrase through the SPA before the documents and per-client secrets
+are readable again. If a key provider was enabled, the restored server
+must also present the <strong>same DEK</strong>, or the vault fails closed.</p>
+<p><img alt="Vault locked — the empty state every operator sees after a server
+restart, regardless of what is stored inside." src="../screenshots/16-vault-locked-empty-state.png" /></p>
+<p><img alt="The Documentation page rendering the same locked-vault
+banner — documents that live inside the vault stay opaque until the
+passphrase is supplied." src="../screenshots/30-documentation-vault-locked.png" /></p>
+<h2 id="encrypting-the-config-secrets">Encrypting the config secrets<a class="headerlink" href="#encrypting-the-config-secrets" title="Permanent link">&para;</a></h2>
+<p><code>proxiportd.conf</code> holds the two most valuable secrets on the box:
+<code>key_seed</code>, from which the SSH host key every agent pins is derived,
+and <code>jwt_secret</code>, which signs every API session. Anyone who reads the
+file in the clear can stand up a server your agents will trust and mint
+admin tokens for your API — from a copy, off your machine, without
+touching the running service.</p>
+<p>Configure a key provider (the <code>[key_provider]</code> section of
+<code>proxiportd.example.conf</code>) and those settings can live in the config as
+ciphertext instead.</p>
+<p>With <code>type = "file"</code>, create the key so that only its owner can read it:</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span><span class="nb">umask</span><span class="w"> </span><span class="m">077</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">32</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/proxiport/dek.key<span class="o">)</span>
+chown<span class="w"> </span>proxiport<span class="w"> </span>/etc/proxiport/dek.key
+</code></pre></div>
+<p>The <code>umask 077</code> is not optional. Without it the default root umask leaves
+the key <code>0644</code> inside a world-traversable <code>/etc/proxiport</code>, which hands
+every local account the one key whose whole job is to make a read of the
+config and the databases useless. The server <strong>refuses to start</strong> on a key
+file that is readable by anyone but its owner, and names the <code>chmod</code> that
+fixes it.</p>
+<p>Encrypt a value with:</p>
+<div class="highlight"><pre><span></span><code>proxiportd<span class="w"> </span>-c<span class="w"> </span>/etc/proxiport/proxiportd.conf<span class="w"> </span>secret<span class="w"> </span>encrypt
+</code></pre></div>
+<p>It prompts for the value without echoing it (or reads it from a pipe),
+and prints an <code>enc:v1:…</code> string. Paste that in place of the plaintext:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[server]</span>
+<span class="w">  </span><span class="n">key_seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"enc:v1:0nQxk2…"</span>
+
+<span class="k">[api]</span>
+<span class="w">  </span><span class="n">jwt_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"enc:v1:kZ0m9y…"</span>
+</code></pre></div>
+<p>The same works for <code>[server] auth</code>, <code>[api] auth</code>,
+<code>[database] db_password</code>, <code>[smtp] auth_password</code>, and the <code>[pushover]</code>
+credentials. Settings without the <code>enc:v1:</code> prefix are still read as
+plaintext, so a config can be migrated one value at a time, and nothing
+breaks if you encrypt none of them.</p>
+<p>Two things follow from the DEK being the only way back:</p>
+<ul>
+<li><strong>Keep the DEK off the machine.</strong> A <code>type = "file"</code> key sitting next
+  to the config it protects stops nobody who steals the disk. Prefer
+  <code>type = "env"</code> with the key injected at start (systemd
+  <code>EnvironmentFile</code> on a <code>tmpfs</code>, a secrets manager, your orchestrator).</li>
+<li><strong>A value the server cannot decrypt stops the server.</strong> Wrong DEK,
+  missing DEK, corrupted ciphertext — <code>proxiportd</code> refuses to start
+  rather than run with a regenerated <code>jwt_secret</code> (which would silently
+  invalidate every session) or a different host key (which would break
+  every agent's fingerprint check). Fix the key, don't work around it.</li>
+</ul>
+<h2 id="what-else-the-key-provider-encrypts">What else the key provider encrypts<a class="headerlink" href="#what-else-the-key-provider-encrypts" title="Permanent link">&para;</a></h2>
+<p>Enabling a <code>[key_provider]</code> also encrypts the recoverable operational
+data the server stores, transparently — you read and write it through
+the API exactly as before, and only the on-disk databases hold
+ciphertext:</p>
+<ul>
+<li><strong>Command and script output</strong> (<code>jobs.db</code>): stdout, stderr and error
+  text are encrypted. The command itself and the one-line summary stay
+  in the clear so the schedules "last run" view works without the key.</li>
+<li><strong>Monitoring data</strong> (<code>monitoring.db</code>): the process list and mountpoint
+  blobs (which can carry command-line arguments and filesystem layout)
+  are encrypted.</li>
+<li><strong>Vault secrets</strong> and <strong>TOTP enrolment seeds</strong>, as covered in
+  <a href="../vault/">vault.md</a> and the two-factor docs.</li>
+</ul>
+<p>On the first boot after you enable a key provider, existing plaintext
+rows are re-encrypted in place. A stolen database read under the wrong
+key (or with none) fails closed — it never returns the ciphertext as if
+it were the value. As with the config secrets, this protects a stolen
+disk, not a live host that also holds the DEK.</p>
+<p>File pushes are staged briefly on disk before agents pull them; that
+staging directory (<code>{data_dir}/filepush</code>) is created owner-only. For the
+strongest guarantee, mount it on a <code>tmpfs</code> so payloads never touch
+persistent storage.</p>
+<h2 id="rotating-credentials">Rotating credentials<a class="headerlink" href="#rotating-credentials" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Admin password.</strong> Edit <code>/etc/proxiport/proxiportd.conf</code>,
+  change the <code>[api] auth = "admin:&lt;new-password&gt;"</code> line, restart
+  the service. Or, if running a multi-user setup with <code>auth_file</code>,
+  edit that JSON file or the corresponding DB row.</li>
+</ul>
+<p>The Users page surfaces a banner whenever auth is pinned in the
+  config (<code>[api] auth = "admin:..."</code>) rather than user-managed —
+  rotating in that mode is a config edit + restart, not a SPA action.</p>
+<p><img alt="Static-auth warning on the Users page." src="../screenshots/18-users-staticauth-warn.png" />
+- <strong>JWT secret.</strong> <code>[api] jwt_secret = "&lt;long-random-string&gt;"</code> —
+  rotating this invalidates every issued session immediately. All
+  users will be redirected to <code>/auth</code>.
+- <strong><code>key_seed</code>.</strong> Rotating the seed changes the server's SSH host
+  key. Every connected agent will fail the fingerprint check
+  until its <code>proxiport.conf</code> is updated. Avoid rotating unless the
+  seed is compromised; coordinate with all agent operators.</p>
+<p>Both of these can be stored encrypted — rotate by writing the new
+  value's <code>enc:v1:…</code> form into the config, exactly as above.
+- <strong>client-auth credentials.</strong> Used by agents to register. Change
+  via <code>[server] auth = "&lt;id&gt;:&lt;password&gt;"</code> (single credential), or
+  via the JSON file pointed at by <code>[server] auth_file</code>, or via the
+  table named in <code>[server] auth_table</code>. Push the new credentials
+  to each agent and restart it.</p>
+<p>When the credentials come from <code>auth_file</code> or <code>auth_table</code> (and
+  <code>[server] auth_write</code> has not been set to <code>false</code>), they can also be
+  managed from the SPA at <strong>Client Access</strong>. The single
+  <code>[server] auth</code> credential is read-only there:</p>
+<p><img alt="Client Access page — create and delete the client-auth IDs agents
+  use to register. A credential cannot be edited; to change one, delete
+  it and create it again." src="../screenshots/20-client-access-creds.png" /></p>
+<ul>
+<li><strong>API tokens.</strong> For programmatic API consumers, mint scoped API
+  tokens at <strong>API Tokens</strong> rather than reusing a human's
+  username/password. Tokens carry a lifetime and an explicit
+  scope (<code>read</code>, <code>read+write</code>, …) and are revocable independently.</li>
+</ul>
+<p><img alt="Create-token form — name, scope, and expiry. The token is
+  shown once on creation; copy it
+  immediately." src="../screenshots/22-api-tokens-create.png" /></p>
+<p>Send a token as HTTP basic auth — your username, with the token as
+  the password (<code>curl -u &lt;username&gt;:&lt;token&gt; …</code>) — not as a Bearer
+  header; see <a href="../api-authentication/#personal-api-token">API authentication</a>.</p>
+<ul>
+<li><strong>TOTP second factor.</strong> TOTP needs a user store the server can
+  write the enrolled secret to: a JSON <code>auth_file</code> or the database
+  user table, each with a <code>totp_secret</code> field (see
+  <a href="../api-authentication/#two-factor-authentication">API authentication</a>).
+  It does not work with the single static <code>[api] auth = "user:password"</code>
+  credential. With such a store in place, set <code>[api] totp_enabled = true</code>
+  in <code>proxiportd.conf</code>, restart, and each user is prompted to enroll on
+  their next login. The user scans the SPA's QR with any RFC 6238
+  TOTP app:</li>
+</ul>
+<p><img alt="First login after TOTP is switched on — the server issues the
+  secret, the SPA shows it as a QR (and as text for manual entry) and
+  asks for the first code." src="../screenshots/37-2fa-setup.png" /></p>
+<p>Admins can require an existing user to re-enroll from the <strong>Users</strong>
+  page:</p>
+<p><img alt="Users — Reset 2FA clears an account's authenticator so its next
+  login enrolls again." src="../screenshots/35-users-with-2fa-recipient.png" /></p>
+<p>Once enabled at the server, the Info page reflects the new
+  posture:</p>
+<p><img alt="Server info with 2FA enabled: yes and the delivery method set to
+  the TOTP authenticator app." src="../screenshots/34-server-info-2fa-on.png" /></p>
+<p>Each user's profile shows their TOTP enrollment state and lets
+  them remove their authenticator. Removing it asks for the account
+  password; a user who cannot supply it needs an admin to use
+  <code>Reset 2FA</code> on the <strong>Users</strong> page instead:</p>
+<p><img alt="Profile page once 2FA is in effect — the enrolled authenticator can
+  be removed here." src="../screenshots/36-profile-in-2fa-mode.png" /></p>
+<h2 id="capacity-and-limits">Capacity and limits<a class="headerlink" href="#capacity-and-limits" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Connected agents per server.</strong> The agent inventory (<code>clients.db</code>)
+  and the other operational databases (jobs, monitoring, audit log)
+  are always SQLite files under <code>[server] data_dir</code>. SQLite handles a
+  few hundred agents comfortably on modest hardware; to support more,
+  give the server faster storage and more CPU. The <code>[database]</code> section
+  (<code>db_type = "mysql"</code>) moves only the API-user and client-auth tables
+  to MySQL/MariaDB, not the agent store.</li>
+<li><strong>Tunnel ports.</strong> <code>[server] used_ports</code> controls the pool of
+  ports the server may allocate for tunnels. Default <code>20000-30000</code>.
+  Expand if you run out.</li>
+<li><strong>Per-user session lifetime.</strong> <code>?token-lifetime=&lt;seconds&gt;</code> on
+  <code>/login</code>; defaults to 10 minutes; the SPA asks for 24 hours.</li>
+</ul>
+<h2 id="updating">Updating<a class="headerlink" href="#updating" title="Permanent link">&para;</a></h2>
+<p><strong>Package installs</strong> (<code>.deb</code> / <code>.rpm</code>, the common case): install the
+new package over the old one, exactly as in
+<a href="../install/#upgrading">Upgrading</a>. The package restarts a running
+<code>proxiportd</code> itself, runs schema migrations on that first start, and
+since v0.11.1 moves the web UI to <code>/usr/share/proxiport/docroot</code> and
+rewrites a default <code>doc_root</code> for you (see
+<a href="../install/#upgrading-to-v0111-or-later">Upgrading to v0.11.1 or later</a>
+for what it prints and what to check). Tail the logs afterwards.</p>
+<p><strong>Tarball installs:</strong></p>
+<ol>
+<li>Stop the service.</li>
+<li>Replace the binary at <code>/usr/bin/proxiportd</code> (where the tarball
+   steps put it) and the web UI under <code>/usr/share/proxiport/docroot</code>,
+   both root-owned.</li>
+<li>Start the service. Schema migrations, if any, run on first
+   start.</li>
+<li>Tail the logs to confirm.</li>
+</ol>
+<p>For the agent, the same shape applies on each managed host; agents
+installed through the pairing service update with its <code>update</code> script.</p>
+<h2 id="tunnels">Tunnels<a class="headerlink" href="#tunnels" title="Permanent link">&para;</a></h2>
+<p>A tunnel is a per-session listener on the server that forwards
+traffic back to a TCP port on the agent. Open one from a client's
+<strong>Tunnels</strong> tab.</p>
+<p><img alt="Tunnel create form — pick the agent-side address, the public
+scheme, and an ACL. The server allocates the public port from
+[server] used_ports unless you pin it
+manually." src="../screenshots/04-tunnel-create-form.png" /></p>
+<p>The ACL is enforced at the server's listener, not at the agent —
+denied traffic never crosses the chisel session. <code>Only my current
+IP address</code> is the default preset and uses the address the API saw the
+request come from. Behind a reverse proxy that is the proxy's own
+address unless the proxy is listed in <code>[api] trusted_proxies</code> <em>and</em>
+sends <code>X-Forwarded-For</code> — both halves are needed, see
+<a href="../ip-address-determination/#forwarded-for-handling-on-the-server">IP-address determination</a>.
+With built-in TLS the connection IP is used directly.</p>
+<p><img alt="Active tunnel with its ACL applied." src="../screenshots/05-tunnel-acl-active.png" /></p>
+<p>Tunnels also accept inactivity / lifetime caps, after which the
+server closes the listener and notifies the agent.</p>
+<p><img alt="Tunnel timeouts — inactivity-close and hard-destroy
+limits." src="../screenshots/05-tunnel-acl-timeouts.png" /></p>
+<p>You can save a tunnel definition into the <strong>Stored tunnels</strong>
+library to re-open it later in one click.</p>
+<p><img alt="Stored tunnels — pre-canned definitions for repeat
+use." src="../screenshots/05b-tunnel-bottom-stored.png" /></p>
+<p>The global <strong>Tunnels</strong> page is the operator's at-a-glance view
+across every connected agent.</p>
+<p><img alt="Global active tunnels." src="../screenshots/06-tunnels-global-active.png" /></p>
+<h3 id="finding-and-reusing-tunnels-from-the-api">Finding and reusing tunnels from the API<a class="headerlink" href="#finding-and-reusing-tunnels-from-the-api" title="Permanent link">&para;</a></h3>
+<p>The per-client endpoint <code>GET /api/v1/clients/{id}</code> includes that
+client's active tunnels by default. The <strong>list</strong> endpoint
+<code>GET /api/v1/clients</code> returns a lean projection — <code>id</code>, <code>name</code>,
+<code>hostname</code> — so request the tunnels field explicitly when you want it
+across the fleet:</p>
+<div class="highlight"><pre><span></span><code>GET /api/v1/clients?fields[clients]=id,name,tunnels
+</code></pre></div>
+<p>This is the same field-projection the list endpoint uses for every
+optional attribute: ask for a field and you get it; a client with no
+open tunnels reports an empty list. Each tunnel object carries the <code>id</code>
+you delete it by (<code>DELETE /api/v1/clients/{id}/tunnels/{tunnelID}</code>), so
+you never have to remember the id from when you created it.</p>
+<h3 id="tunnels-survive-an-agent-restart">Tunnels survive an agent restart<a class="headerlink" href="#tunnels-survive-an-agent-restart" title="Permanent link">&para;</a></h3>
+<p>When an agent drops and reconnects under the same client id, the server
+<strong>re-establishes that client's tunnels automatically</strong> — including a
+manually pinned local port — and the restored listener starts carrying
+traffic again with no operator action. Because the tunnel is still
+there, opening a <em>new</em> tunnel to the same agent-side port returns
+<code>ERR_CODE_TUNNEL_TO_PORT_EXIST</code>. Reuse the existing tunnel (look it up
+as above) rather than recreating it; delete it by id first only if you
+genuinely want a fresh listener.</p>
+<h2 id="commands-and-scripts">Commands and scripts<a class="headerlink" href="#commands-and-scripts" title="Permanent link">&para;</a></h2>
+<p>ProxiPort can run ad-hoc commands or multi-line scripts against any
+connected agent and show the output once each run finishes. What an
+agent will run is decided by the <code>[remote-commands]</code> block in its
+<code>proxiport.conf</code>. With the stock config, remote commands are enabled
+(<code>enabled = true</code>) but filtered: only commands given by absolute path
+under <code>/usr/bin</code>, <code>/usr/local/bin</code> or <code>C:\Windows\System32</code> pass the
+default <code>allow</code> list, and the default <code>deny</code> list rejects shell
+metacharacters. Set <code>enabled = false</code> to turn command execution off
+entirely. Agents installed through the pairing service have remote
+commands disabled unless the installer was run with <code>-x</code>, which
+enables them with an unrestricted allow list.</p>
+<p><img alt="Allowlist block — uname -a was sent without its full path, so it
+matches no allow pattern (the default list only accepts paths like
+/usr/bin/...) and the agent refused it. /usr/bin/uname -a
+runs." src="../screenshots/12-cmd-allowlist-block.png" /></p>
+<p>When a command is allowed, the SPA polls the job and, once it
+finishes, prints stdout / stderr under the form followed by a
+<code>--- status=successful ---</code> (or <code>failed</code> / <code>cancelled</code>) line. If the
+command fails, its error (for example <code>exit status 127</code>) also appears
+in the Error column of the Recent commands table.</p>
+<p><img alt="Single-host uname run — the output is shown under the form once
+the job finishes." src="../screenshots/13-cmd-run-uname-output.png" /></p>
+<p>Scripts are the same control surface with a multi-line editor and a
+free-text Interpreter field, which starts out as <code>/bin/bash</code>; enter
+any interpreter path (for example <code>/usr/bin/python3</code>) or an
+interpreter alias defined in the agent's config. The agent writes the
+body to a tempfile, executes, and reaps the process.</p>
+<p>Script execution is off by default on the agent and is separate from
+the command allow list. Set <code>enabled = true</code> under <code>[remote-scripts]</code>
+in the agent's <code>proxiport.conf</code> and restart the agent; until then
+every script run is rejected. Scripts also need remote commands to be
+enabled. An agent installed with the pairing installer's <code>-x</code> switch
+already has scripts enabled. See <a href="../scripts/#enabling-script-execution-on-the-agent">Scripts</a>.</p>
+<p><img alt="Script run — a short bash script with interpreter, working-directory
+and timeout fields and a Run as sudo checkbox; the output appears
+below once the job completes." src="../screenshots/14-script-run-with-output.png" /></p>
+<p>For repeated patterns, save commands and scripts into the
+<strong>Library</strong>:</p>
+<p><img alt="Saved-commands library." src="../screenshots/28-library-saved-commands.png" /></p>
+<p><img alt="Saved-scripts library." src="../screenshots/29-library-saved-scripts.png" /></p>
+<p>The Library stores command and script bodies for reuse; it has no run
+action of its own. To run a command against several agents at once —
+useful for one-shot fleet work — use the <strong>Commands</strong> page: tick the
+target agents and type the command, or paste a saved entry's body from
+the Library.</p>
+<p><img alt="Multi-target command fan-out — same body, dispatched to every
+selected agent in parallel." src="../screenshots/26-multitarget-cmd-fanout.png" /></p>
+<p>The global <strong>Scripts</strong> page is the same concept for whole-fleet
+script runs. It is still being reimplemented from the upstream
+shape — at the moment it is a stub whose button opens the
+<strong>Commands</strong> page, where you can pick an interpreter to run a script
+body across several agents. To run a script on a single agent, use
+the Scripts tab on that agent's page.</p>
+<p><img alt="Global Scripts stub." src="../screenshots/25-scripts-global-stub.png" /></p>
+<h2 id="schedules">Schedules<a class="headerlink" href="#schedules" title="Permanent link">&para;</a></h2>
+<p>For recurring runs, create a schedule: a cron expression, the target
+agents (or client groups), and the command or script body to run. The
+body is entered on the schedule itself; schedules do not reference
+Library entries, so changing a Library entry does not change a
+schedule. The scheduler is in-process; no external cron is needed.</p>
+<p><img alt="Schedules list — name, type (command or script), cron expression,
+how many clients and groups it targets, and who created it. New
+schedule / Edit opens the form for the body, interpreter, timeout and
+targets." src="../screenshots/27-schedules-cron.png" /></p>
+<h2 id="file-transfer">File transfer<a class="headerlink" href="#file-transfer" title="Permanent link">&para;</a></h2>
+<p>From a client's <strong>Files</strong> tab, upload a file from your browser to a
+chosen path on the agent, with optional mode, owner and group, and
+options for an atomic (sync) write and force-overwrite. The transfer
+goes over the same chisel session as everything else.</p>
+<p><img alt="File push on a client's Files tab — local file, remote path, mode,
+owner/group, and the sync (atomic) and force-overwrite
+options." src="../screenshots/32-file-push.png" /></p>
+<h2 id="audit-log">Audit log<a class="headerlink" href="#audit-log" title="Permanent link">&para;</a></h2>
+<p>Every state-changing API call writes an <code>auditlog.db</code> row with the
+user, client (if any), action, timestamp, and the request payload.
+The per-client view filters the same table down to events touching
+one agent:</p>
+<p><img alt="Per-client audit
+log." src="../screenshots/15-audit-log-perclient.png" /></p>
+<p>The global <strong>Audit</strong> page is for cross-cutting queries — who
+created which tunnel, who rotated which credential. Reading a vault
+secret — the one high-value read worth tracking — is recorded too, as a
+<code>read</code> action (never the secret itself).</p>
+<h3 id="tamper-evidence">Tamper-evidence<a class="headerlink" href="#tamper-evidence" title="Permanent link">&para;</a></h3>
+<p>When a key provider is configured, each audit entry carries a keyed
+HMAC chained to the previous entry (the key is derived from the server
+DEK and is never stored in the audit database, so someone who has only
+the database files cannot recompute it; anyone who can read the DEK —
+the <code>key_file</code>, or the running server's environment or memory — can).
+Editing or deleting a row after the fact breaks the chain. Check it
+with:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>https://&lt;server&gt;/api/v1/auditlog/verify<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</code></pre></div>
+<p>A <code>"Valid": true</code> response means every entry verifies; a break reports
+the sequence number and kind (<code>mac</code> — a row was edited, <code>link</code>/<code>gap</code> — a
+row was removed or reordered). This detects tampering <strong>on the box</strong>; it
+does not stop a host with the DEK from forging new entries — ship entries
+to an off-host, append-only sink for that. Rotation starts a fresh chain
+per <code>auditlog.&lt;timestamp&gt;.db</code> file.</p>
+<p><img alt="Global audit log." src="../screenshots/24-audit-log-global.png" /></p>
+<h2 id="user-and-group-admin">User and group admin<a class="headerlink" href="#user-and-group-admin" title="Permanent link">&para;</a></h2>
+<p>User groups gate which API endpoints (and therefore which SPA
+sections) each user can reach. The built-in <code>Administrators</code> group has
+every permission set and cannot be edited or deleted. To add a group,
+give a user its name on the <strong>Users</strong> page (type it in the group field
+and click <strong>Add group</strong>); the group then appears on <strong>User Groups</strong>,
+where you tick only the columns the role needs. Permissions can be
+edited only with database-backed users and an
+<code>[api] auth_group_details_table</code>; otherwise the page is read-only. A
+user's effective permissions are the union across its groups.</p>
+<p><img alt="User Groups — RBAC columns for tunnels, commands, scripts, scheduler,
+monitoring, auditlog, uploads, and vault." src="../screenshots/19-user-groups-rbac-columns.png" /></p>
+<p>Client groups are rule-based sets of agents: a group's <code>params</code> match
+client attributes such as client ID, name, hostname, OS or tags, and
+every agent that matches belongs to the group. Groups are created and
+changed through the API (see
+<a href="../client-groups-permissions/#managing-groups-via-the-api">Client groups and permissions</a>);
+the SPA's Client Groups page lists them read-only. You can target a
+group by passing <code>group_ids</code> to the multi-client command and script
+API calls, or in a schedule's "Target groups" field. The ad-hoc
+Commands page selects targets per client only, and the audit log has
+no group filter.</p>
+<p><img alt="Client Groups list." src="../screenshots/21-client-groups-list.png" /></p>
+<p>Each user has a profile page (<strong>Settings → Profile</strong>) that shows their
+username, group membership and 2FA recipient, and manages their own
+TOTP second factor. The web UI has no self-service password change. An
+administrator sets a user's password from <strong>Settings → Users</strong>, or a
+user can change their own through the API with <code>PUT /api/v1/me</code>
+(<code>password</code> plus <code>old_password</code>). With static <code>[api] auth</code>, the
+password is whatever the config file sets.</p>
+<p><img alt="Profile page with TOTP disabled at the server — the two-factor card
+names the setting to turn on (totp_enabled = true in
+[api])." src="../screenshots/31-profile-staticauth.png" /></p>
+<h2 id="common-pitfalls">Common pitfalls<a class="headerlink" href="#common-pitfalls" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>429 too many requests</code> or <code>423 Locked</code> after failed logins.</strong>
+  Failed password logins are throttled per source IP plus username:
+  after a failed basic-auth or <code>/login</code> attempt for a username, further
+  attempts for that username from the same address get <code>429</code> for
+  <code>[api] user_login_wait</code> seconds (default 2). Requests with an expired
+  or invalid session token, or with no credentials, just get <code>401</code> and
+  add nothing to that throttle, but every unauthorized request counts
+  against the per-IP limit: after <code>[api] max_failed_login</code> failures
+  (default 10) the address is refused with <code>423 Locked</code> for
+  <code>[api] ban_time</code> seconds
+  (default 600). The SPA stops sending API calls once its token is
+  gone; if you write your own client, stop retrying on the first <code>401</code>
+  and re-authenticate, so a burst of rejected calls does not lock out
+  your own address.</li>
+<li><strong>Agent refuses to connect with "fingerprint mismatch".</strong> Either
+  the server's <code>key_seed</code> changed or the agent's
+  <code>fingerprint = "..."</code> value is stale. Compare the fingerprint
+  printed in the server log at startup against the agent config.</li>
+<li><strong>SPA shows the vault as locked even after entering the
+  passphrase.</strong> Vault passphrases are <em>not</em> persisted server-side
+  — they live in memory for the life of the process. A server
+  restart re-locks the vault. Enter the passphrase again via
+  <code>Settings → Vault</code>.</li>
+<li>
+<p><strong>Server exits with "is still the placeholder from
+  proxiport.example.conf".</strong> Since 0.8.8 <code>proxiportd</code> refuses to
+  start while <code>[api] jwt_secret</code>, <code>[server] key_seed</code>,
+  <code>[server] auth</code> or <code>[api] auth</code> still holds the value the example
+  config ships. Those values are published in the project
+  repository, so they are not secrets — a placeholder <code>jwt_secret</code>
+  in particular becomes the token signing key, and anyone who can
+  reach the API can mint an admin token with it. The <code>.deb</code> and
+  <code>.rpm</code> postinstall substitutes all four on first install; a
+  tarball, container, or hand-copied config does not. Generate
+  them yourself:</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>rand<span class="w"> </span>-hex<span class="w"> </span><span class="m">32</span><span class="w">     </span><span class="c1"># key_seed</span>
+openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">24</span><span class="w">  </span><span class="c1"># jwt_secret</span>
+</code></pre></div>
+<p>Leaving <code>jwt_secret</code> unset is also fine — the server then mints
+a random one at startup, at the cost of logging every user out
+on each restart.</p>
+</li>
+</ul>
+<h2 id="where-to-get-help">Where to get help<a class="headerlink" href="#where-to-get-help" title="Permanent link">&para;</a></h2>
+<ul>
+<li>File a bug or feature request on the GitHub repository.</li>
+<li>Private vulnerability reports go through GitHub Security
+  Advisories — see <a href="https://github.com/proximile/proxiport/blob/main/SECURITY.md"><code>SECURITY.md</code></a>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Proximile LLC. AGPL-3.0-or-later.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.sections", "navigation.top", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../assets/image-links.js"></script>
+      
+    
+  </body>
+</html>
